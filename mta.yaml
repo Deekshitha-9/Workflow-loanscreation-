@@ -1,0 +1,92 @@
+_schema-version: "3.2"
+ID: cash
+version: 0.0.1
+modules:
+- name: cash-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: cash-destination-service
+    parameters:
+      content-target: true
+  - name: cash_html_repo_host
+    parameters:
+      service-key:
+        name: cash_html_repo_host-key
+  - name: uaa_cash
+    parameters:
+      service-key:
+        name: uaa_cash-key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: cash_cash_html_repo_host
+          ServiceInstanceName: cash-html5-app-host-service
+          ServiceKeyName: cash_html_repo_host-key
+          sap.cloud.service: cash
+        - Authentication: OAuth2UserTokenExchange
+          Name: cash_uaa_cash
+          ServiceInstanceName: cash-xsuaa-service
+          ServiceKeyName: uaa_cash-key
+          sap.cloud.service: cash
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: cash-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: cash_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - cashworkflowuimodule.zip
+      name: cashworkflowuimodule
+      target-path: resources/
+- name: cashworkflowuimodule
+  type: html5
+  path: workflow-ui-module
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: cash-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        subaccount:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: cash-destination-service
+    service-plan: lite
+- name: cash_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: cash-html5-app-host-service
+    service-plan: app-host
+- name: uaa_cash
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: cash-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo

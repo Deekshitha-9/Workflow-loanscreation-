@@ -1,0 +1,78 @@
+/* ===================================================== */
+/* BOXED SECTION (SimpleForm) */
+/* ===================================================== */
+.boxedSection {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    background-color: #ffffff;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+/* ===================================================== */
+/* TABLE – FULL GRID LOOK */
+/* ===================================================== */
+.gridTable {
+    border: 1px solid #d9d9d9;
+    background-color: #ffffff;
+}
+
+/* ===================================================== */
+/* TABLE HEADER */
+/* ===================================================== */
+.gridTable .sapMListTblHeaderCell {
+    background-color: #f7f7f7;
+    font-weight: 600;
+    color: #32363a;
+    border-right: 1px solid #d9d9d9;
+    border-bottom: 1px solid #0854a0;
+    padding: 0.5rem;
+}
+
+.gridTable .sapMListTblHeaderCell:last-child {
+    border-right: none;
+}
+
+/* ===================================================== */
+/* TABLE BODY CELLS */
+/* ===================================================== */
+.gridTable .sapMListTblCell {
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.5rem;
+    background-color: #ffffff;
+}
+
+.gridTable .sapMListTblCell:last-child {
+    border-right: none;
+}
+
+/* ===================================================== */
+/* ROW HOVER (Inbox style) */
+/* ===================================================== */
+.gridTable .sapMListTblRow:hover {
+    background-color: #f1f7fd;
+}
+
+/* ===================================================== */
+/* TEXT */
+/* ===================================================== */
+.gridTable .sapMText {
+    font-size: 0.875rem;
+    color: #32363a;
+}
+
+/* ===================================================== */
+/* LABELS */
+/* ===================================================== */
+.boxedSection .sapMLabel {
+    font-weight: 600;
+}
+
+/* ===================================================== */
+/* READ-ONLY INPUT */
+/* ===================================================== */
+.sapMInputBaseReadonly .sapMInputBaseInner {
+    background-color: #fafafa;
+    border: 1px solid #d9d9d9;
+}
