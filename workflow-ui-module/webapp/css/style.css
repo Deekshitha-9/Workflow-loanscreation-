@@ -1,78 +1,74 @@
-/* ===================================================== */
-/* BOXED SECTION (SimpleForm) */
-/* ===================================================== */
-.boxedSection {
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    background-color: #ffffff;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-}
-
-/* ===================================================== */
-/* TABLE – FULL GRID LOOK */
-/* ===================================================== */
-.gridTable {
-    border: 1px solid #d9d9d9;
-    background-color: #ffffff;
-}
-
-/* ===================================================== */
-/* TABLE HEADER */
-/* ===================================================== */
-.gridTable .sapMListTblHeaderCell {
-    background-color: #f7f7f7;
-    font-weight: 600;
-    color: #32363a;
+.partnersTable .sapMListTblCell {
     border-right: 1px solid #d9d9d9;
-    border-bottom: 1px solid #0854a0;
-    padding: 0.5rem;
 }
 
-.gridTable .sapMListTblHeaderCell:last-child {
+.partnersTable .sapMListTblCell:last-child {
     border-right: none;
 }
-
 /* ===================================================== */
-/* TABLE BODY CELLS */
+/* APPLY RESPONSIVE FLEX LAYOUT TO ALL OBJECTPAGE FIELDS */
 /* ===================================================== */
-.gridTable .sapMListTblCell {
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 0.5rem;
-    background-color: #ffffff;
+ 
+/* Target every HBox inside ObjectPage SubSection */
+.sapUxAPObjectPageSubSection .sapMHBox {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem 2rem !important;
+    width: 100% !important;
 }
-
-.gridTable .sapMListTblCell:last-child {
-    border-right: none;
+ 
+/* Target every VBox inside those HBoxes (each field block) */
+.sapUxAPObjectPageSubSection .sapMHBox > .sapMVBox {
+    flex: 1 1 220px !important;
+    min-width: 200px !important;
+    max-width: 260px !important;
 }
-
-/* ===================================================== */
-/* ROW HOVER (Inbox style) */
-/* ===================================================== */
-.gridTable .sapMListTblRow:hover {
-    background-color: #f1f7fd;
+ 
+/* Make Inputs and DatePickers full width */
+.sapUxAPObjectPageSubSection .sapMVBox .sapMInputBase,
+.sapUxAPObjectPageSubSection .sapMVBox .sapMDatePicker {
+    width: 100% !important;
 }
-
-/* ===================================================== */
-/* TEXT */
-/* ===================================================== */
-.gridTable .sapMText {
-    font-size: 0.875rem;
-    color: #32363a;
+ 
+ 
+/* ================= BREAKPOINTS ================= */
+ 
+/* Large screens – 5 per row */
+@media (min-width: 1400px) {
+    .sapUxAPObjectPageSubSection .sapMHBox > .sapMVBox {
+        flex: 0 0 calc(20% - 2rem) !important;
+        max-width: calc(20% - 2rem) !important;
+    }
 }
-
-/* ===================================================== */
-/* LABELS */
-/* ===================================================== */
-.boxedSection .sapMLabel {
-    font-weight: 600;
+ 
+/* Desktop – 4 per row */
+@media (min-width: 1000px) and (max-width: 1399px) {
+    .sapUxAPObjectPageSubSection .sapMHBox > .sapMVBox {
+        flex: 0 0 calc(25% - 2rem) !important;
+        max-width: calc(25% - 2rem) !important;
+    }
 }
-
-/* ===================================================== */
-/* READ-ONLY INPUT */
-/* ===================================================== */
-.sapMInputBaseReadonly .sapMInputBaseInner {
-    background-color: #fafafa;
-    border: 1px solid #d9d9d9;
+ 
+/* Tablet – 3 per row */
+@media (min-width: 768px) and (max-width: 999px) {
+    .sapUxAPObjectPageSubSection .sapMHBox > .sapMVBox {
+        flex: 0 0 calc(33.33% - 2rem) !important;
+        max-width: calc(33.33% - 2rem) !important;
+    }
+}
+ 
+/* Small tablet – 2 per row */
+@media (min-width: 500px) and (max-width: 767px) {
+    .sapUxAPObjectPageSubSection .sapMHBox > .sapMVBox {
+        flex: 0 0 calc(50% - 1.5rem) !important;
+        max-width: calc(50% - 1.5rem) !important;
+    }
+}
+ 
+/* Mobile – 1 per row */
+@media (max-width: 499px) {
+    .sapUxAPObjectPageSubSection .sapMHBox > .sapMVBox {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
 }
